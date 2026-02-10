@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Django Data Visualization</title>
+        <script src="https:cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+
+    <body>
+
+        <h2>Students per Course</h2>
+
+        <canvas id="myChart" width="400" height="200"></canvas>
+
+        <script>
+
+            const courses = {{ courses|safe }};
+            const totals = {{ totals|safe }};
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels:courses,
+                    datasets:[{
+                        label: 'Number of Students',
+                        data: totals,
+                        borderWidth: 1
+                    }]
+                }
+            });
+        </script>
+        
+    </body>
+</html>
